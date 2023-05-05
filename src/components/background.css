@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.bigimg {
+    height: 100vh;
+    background: url(../image/defibank.jpeg);
+    background-size: cover;
+    /* cover sẽ đảm bảo hình lắp đầy màn hình  */
+    background-position: right;
+    align-items: center;
+    /* align-items là cang dọc */
+    text-align: center;
+    justify-content: center;
+    /* cái này canh ngang */
+    background-attachment: fixed;
+    /* fixed là dù có di chuyển như nào chỉ có chỉ chuyển nền ko chuyển */
+    font-size: 30px;
+}
+.bigimg>.top{
+    height: 70%;
+    width: 100%;
+}
+.bigimg>.bottom{
+    height: 35%;
+    width: 100%;
+    background-color: rgb(27, 32, 48);
+    display: flex;
+    box-sizing: border-box;
+    color: rgb(241, 241, 243);
+
+}
+.bottom>.number{
+    height: 100%;
+    width: 60%;
+    padding-top: 20px;
+}
+.number>h1{
+    font-size: 70px;
+    text-align: start;
+    padding-left:50px;  
+    word-spacing: 10px;
+    letter-spacing: 3px;
+}
+.bottom>.function{
+    height: 100%;
+    width: 40%;
+    justify-content: end;
+}
+.function>.tab{
+    width: 80%;
+    height: 100%;
+    padding-top: 20px;
+}
+.nav-tabs{
+    justify-content: end;
+    margin-left: 100px;
+}
+.nav-tabs .nav-link {
+    background-color: transparent !important;
+    color: #706d6d !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+.nav-tabs .nav-link.active {
+    color: #ffffff !important;
+}
+.content{
+    margin-top: 16px;
+    width: 65%;
+    margin-left:130px;
+    text-align: start;
+}

@@ -1,0 +1,11 @@
+.deposit{
+    width: 95vw;
+    margin: auto;
+    height: 90vh;
+    background-color: white;
+    border-radius: 5px;
+    margin-left: 2%;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid #bbbedb;
+}
