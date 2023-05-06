@@ -159,7 +159,7 @@ export default class IuhCoinDeposit extends Component{
                                         <Tab eventKey={3} title="3 Pending" disabled>
                                             <Tab.Content className="row">
                                                 <h6 className="p-3 col-9" style={{textAlign: "start"}}><span className="h5 text-primary">3/3 Finishes</span> <br/>Press button to back to home</h6>
-                                                <Button onClick={this.handleNextTab} variant="btn btn-primary h-25 m-auto">Dashboard</Button>
+                                                <a href="/home"><Button onClick={this.handleNextTab} variant="btn btn-primary h-50 m-auto">Dashboard</Button></a>
                                             </Tab.Content>
                                         </Tab>
                                     </Tabs>

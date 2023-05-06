@@ -136,7 +136,7 @@ contract LoanContract {
         uint interest = (loan.interestRate * loan.amount) / 10000;
         require(msg.value == loan.amount + interest, "Amount repaid does not match loan amount and interest rate.");
         
-        require(IuhCoin.transferFrom(msg.sender, loan.owner, msg.value),"Tranfer wrong");
+        loan.owner.transfer(msg.value);
 
         if(keccak256(abi.encodePacked(loan.tokenCollateral)) == keccak256(abi.encodePacked("IuhCoin"))){
             require(IuhCoin.transfer(loan.borrower,loan.deposit));

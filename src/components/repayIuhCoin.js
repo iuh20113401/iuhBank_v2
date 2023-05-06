@@ -66,9 +66,18 @@ export default class RepayIuhCoin extends Component{
     async repayAmount(amount){
         this.setState({amount: amount, connect: true});
     }
-    async repayEther(){
+
+    async Approve(){
         try {
-            await this.state.iuhBank.methods.repayIuhCoin().send({from: this.state.account, value:(this.state.Repay * 10 ** 18).toString()});
+            await this.state.token.methods.approve(this.state.iuhBankAddress, (this.state.Repay * 10 **18).toString()).send({from: this.state.account});
+            this.handleNextTab();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async repayIuhCoin(){
+        try {
+            await this.state.iuhBank.methods.repayIuhCoin((this.state.Repay * 10 ** 18).toString()).send({from: this.state.account});
             this.handleNextTab();
         } catch (error) {
             console.log(error)
@@ -98,19 +107,29 @@ export default class RepayIuhCoin extends Component{
                                 </form>
                                 <div className="mb-3 w-50 m-auto ">
                                     <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} variant="pills" justify className = 'bg-light w-100 m-auto border'>
-                                        <Tab eventKey={1} title="1 Repay" disabled>
+                                        <Tab eventKey={1} title="1 Approve" disabled>
                                             <Tab.Content className="row">
-                                                <h6 className="p-3 col-9" style={{textAlign: "start"}}><span className="h5 text-primary">1/2 Repay</span> <br/>Pleasde submit to repay</h6>
+                                                <h6 className="p-3 col-9" style={{textAlign: "start"}}><span className="h5 text-primary">1/3 Approve</span> <br/>Pleasde approve to repay</h6>
                                                 <Button onClick={(e) => {
                                                     e.preventDefault()
-                                                    this.repayEther();
+                                                    this.Approve();
+                                                    }} 
+                                                variant="btn btn-primary h-25 m-auto">Approve</Button>
+                                            </Tab.Content>
+                                        </Tab>
+                                        <Tab eventKey={2} title="1 Repay" disabled>
+                                            <Tab.Content className="row">
+                                                <h6 className="p-3 col-9" style={{textAlign: "start"}}><span className="h5 text-primary">2/3 Repay</span> <br/>Pleasde submit to repay</h6>
+                                                <Button onClick={(e) => {
+                                                    e.preventDefault()
+                                                    this.repayIuhCoin();
                                                     }} 
                                                 variant="btn btn-primary h-25 m-auto">Repay</Button>
                                             </Tab.Content>
                                         </Tab>
-                                        <Tab eventKey={2} title="2 Pending" disabled>
+                                        <Tab eventKey={3} title="3 Pending" disabled>
                                             <Tab.Content className="row">
-                                                <h6 className="p-3 col-9" style={{textAlign: "start"}}><span className="h5 text-primary">2/2 Finishes</span> <br/>Press button to back to home</h6>
+                                                <h6 className="p-3 col-9" style={{textAlign: "start"}}><span className="h5 text-primary">3/3 Finishes</span> <br/>Press button to back to home</h6>
                                                 <a href="/home" className="m-auto"><Button onClick={this.handleNextTab} variant="btn btn-primary m-auto">Dashboard</Button></a>
                                             </Tab.Content>
                                     </Tab>

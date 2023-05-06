@@ -138,7 +138,7 @@ export default class WithdrawIuhCoin extends Component{
                                     These are your transaction details. Make sure to check <br></br> if this is correct before submitting
                                 </p>
                                 <form>
-                                    <Form.Label htmlFor="disabledTextInput">Amount to deposit {this.state.amount} Ether</Form.Label>
+                                    <Form.Label htmlFor="disabledTextInput">Amount to deposit {this.state.amount} IuhCoin</Form.Label>
                                 </form>
                                 <div className="mb-3 w-50 m-auto ">
                                     <Tabs activeKey={this.state.activeTab} onSelect={this.handleSelect} variant="pills" justify className = 'bg-light w-100 m-auto border'>

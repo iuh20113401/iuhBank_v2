@@ -65,9 +65,9 @@ export default class HeaderMarket extends Component {
                                 style={{ maxHeight: '100px',justifyContent: 'center'}}
                                 navbarScroll
                             >
-                                <Nav.Link href="/home" className='col-2 text-light h6'>Dashboard</Nav.Link>
-                                <Nav.Link href="/market" className='col-3 text-light h6'>Market</Nav.Link>
-                                <Nav.Link href="/PersonalLoan" className='col-3 text-light h6'>Personal Loan</Nav.Link>
+                                <Nav.Link href="/home" className='col-3  m-auto text-light h6'>Dashboard</Nav.Link>
+                                <Nav.Link href="/market" className='col-3 m-auto text-light h6'>Market</Nav.Link>
+                                <Nav.Link href="/PersonalLoan" className='col-4 m-0 text-light h6'>Personal Loan</Nav.Link>
                             </Nav>
                             <div className="d-flex justify-content-end  w-100">
                                 <Dropdown>

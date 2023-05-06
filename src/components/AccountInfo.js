@@ -163,7 +163,7 @@ export default class AccountInfo extends Component{
                         {this.state.TotalLoan != [] && <div className="deposti">
                             {this.state.TotalLoan.map((loan) => (
                                 <div>
-                                    {(loan.borrowed == true && this.state.check[loan.index] && loan.returned == false) && <div>
+                                    {(loan.borrowed == true && this.state.check[loan.index] && loan.returned == false ) && <div>
                                         <Card>
                                         <Card.Header className="bg-danger">Over time</Card.Header>
                                         <Card.Body>
@@ -190,10 +190,16 @@ export default class AccountInfo extends Component{
                                             </Table>
                                             </Card.Text>
                                             <Card.Footer className="text-center">
-                                                    <Button variant="primary" className="m-auto" onClick={(e) =>{
+                                                    {loan.closed == false && <Button variant="primary" className="m-auto" onClick={(e) =>{
                                                         e.preventDefault();
                                                         this.cancelLoan(loan.index);
-                                                    }}>WidthDraw collateral</Button>
+                                                    }}>WidthDraw collateral</Button>}
+                                                    {
+                                                        loan.closed == true && <Button variant="primary" className="m-auto" disabled onClick={(e) =>{
+                                                        e.preventDefault();
+                                                        this.cancelLoan(loan.index);
+                                                    }}> Aldready WidthDraw</Button>
+                                                    }
                                             </Card.Footer>
                                         </Card.Body>
                                         </Card>

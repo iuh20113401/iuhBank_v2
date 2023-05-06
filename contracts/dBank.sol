@@ -239,7 +239,7 @@ contract iuhBank {
     require(user[msg.sender].Collateral>= amount, "You don't have enough collateral to borrow");
     user[msg.sender].Collateral -= amount;
     user[msg.sender].Borrow[index] += amount;
-    user[msg.sender].frezeAmount[index] += (amount) / price;
+    user[msg.sender].frezeAmount[index] += ((amount * 100)/80) / price;
     user[msg.sender].isBorrowed["IuhCoin"] = true;
 
     IuhToken.totalAmount -= ((amount * 100)/80) / price;
@@ -271,11 +271,11 @@ contract iuhBank {
     emit Repay(msg.sender);
   }
 
-  function repayIuhCoin() payable public {
+  function repayIuhCoin(uint amount) payable public {
     require(user[msg.sender].isBorrowed["IuhCoin"] == true, 'Error, loan not active');
     uint price = oracle.getIuhPrice();
     uint index = user[msg.sender].token["IuhCoin"];
-    uint payAmount = msg.value * price ;
+    uint payAmount = amount * price ;
     uint freze = user[msg.sender].frezeAmount[index];
     require(payAmount == user[msg.sender].Borrow[index], "Don't enough");
     

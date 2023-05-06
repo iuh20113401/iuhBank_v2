@@ -4,7 +4,6 @@ import "./background.css";
 import {Tab, Tabs, Row} from 'react-bootstrap';
 import iuhBank from '../abis/iuhBank.json'
 import Web3 from 'web3';
-import dai from "../dai.svg";
 
 export default class Home extends Component{
     async componentDidMount() {
@@ -32,10 +31,8 @@ export default class Home extends Component{
                 {<Header/>}
             </div>
             <div className="bigimg">
-                <div className="top">
-                    <img
-                    src={dai}
-                    ></img>
+                <div className="top1">
+                    
                 </div>
                 <div className="bottom">
                     <div className="number">
