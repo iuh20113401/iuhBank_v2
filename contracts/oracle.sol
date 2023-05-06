@@ -4,7 +4,7 @@ pragma solidity >=0.6.0 <0.8.0;
 contract Oracle{
     address public owner;
     uint private etherPrice = 1875 ;
-    uint private iuhPrice = 1;
+    uint private iuhPrice = 185;
     constructor() public{
         owner = msg.sender;
     }

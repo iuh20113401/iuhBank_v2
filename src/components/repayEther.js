@@ -30,7 +30,7 @@ export default class RepayEther extends Component{
             for (let index = 0; index < userBorrow['tokenName'].length; index++) {
             const element =  userBorrow['tokenName'][index];
             if(element == "Ether"){
-                this.setState({Repay: (userBorrow['Borrow'][index]/ etherPool['price']) / 10 **18})
+                this.setState({Repay: ((userBorrow['Borrow'][index])/ etherPool['price'])/ 10 **18 })
             }
             }
             this.setState({token: iuhCoin, iuhBank: IuhBank, iuhBankAddress: iuhBankAddress})
@@ -49,7 +49,7 @@ export default class RepayEther extends Component{
             iuhBank: null, 
             token: null,
             iuhBankAddress: null,
-            Repay: null,
+            Repay: 0.0,
             account: null,
             balance: 0,
             amount: 0,

@@ -175,33 +175,44 @@ contract iuhBank {
         }
     }}
   }
-  function withdrawEther(uint amount) depositor public {
+    function withdrawEther(uint amount) depositor public {
     // thực hiện rút
-    uint index = user[msg.sender].token["Ether"]; 
+    UserInfo storage user = user[msg.sender];
+    uint index = user.token["Ether"]; 
     require(EtherToken.totalAmount >= amount, "Now liquidity don't have enough token");
-    require(amount <= user[msg.sender].LendAmount[index], "You don't have enoough token to widthdraw");
-
-    user[msg.sender].Collateral -= (amount * oracle.getPrice() * 80 ) / 100;
+    require(amount <= user.LendAmount[index], "You don't have enoough token to widthdraw");
+    uint widthdraw = (amount * oracle.getPrice() * 80 ) / 100;
+    if( widthdraw > user.Collateral){
+        user.Collateral = 0;
+    }else{
+        user.Collateral -= widthdraw;
+    }
     //cài đặt trạng thái pool
     EtherToken.totalAmount -= amount;
-    user[msg.sender].LendAmount[index] -= amount;
+    user.LendAmount[index] -= amount;
     msg.sender.transfer(amount);
     updateRate();
     emit Withdraw(msg.sender, amount);
   }
   function withdrawIuh(uint amount) depositor  public {
+    UserInfo storage user = user[msg.sender];
     // thực hiện rút
-    uint index = user[msg.sender].token["IuhCoin"]; 
+    uint index = user.token["IuhCoin"]; 
     require(IuhToken.totalAmount >= amount,"Now liquidity don't have enough token");
-    require(amount <= user[msg.sender].LendAmount[index], "You don't have enough token");
-     // Kiểm tra số dư token của smart contract trả lại cho người dùng
+    require(amount <= user.LendAmount[index], "You don't have enough token");
+
     require(iuhcoin.balanceOf(address(this)) >= amount, "Smart contract balance not enough.");
-    // Chuyển token từ smart contract trả lại cho người dùng
+
     require(iuhcoin.transfer(msg.sender, amount), "Token transfer failed.");
-    //cài đặt trạng thái pool
-    user[msg.sender].Collateral -= (amount * oracle.getIuhPrice() * 80) / (100);
+
+    uint widthdraw = (amount * oracle.getIuhPrice() * 80 ) / 100;
+    if( widthdraw > user.Collateral){
+        user.Collateral = 0;
+    }else{
+        user.Collateral -= widthdraw;
+    }
     IuhToken.totalAmount -= amount;
-    user[msg.sender].LendAmount[index] -= amount;
+    user.LendAmount[index] -= amount;
     updateRate();
     emit Withdraw(msg.sender, amount);
   }

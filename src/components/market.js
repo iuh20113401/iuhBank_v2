@@ -120,6 +120,7 @@ export default class Dashboard extends Component{
                             <table className="w-100">
                                 <tr>
                                     <td>Asset</td>
+                                    <td>Price</td>
                                     <td>Total Supplied</td>
                                     <td>Supply APB</td>
                                     <td>Total borrowed</td>
@@ -129,6 +130,9 @@ export default class Dashboard extends Component{
                                 <tr>
                                     <td>
                                         <span className="h6 m-1">Ether</span>
+                                    </td>
+                                    <td>
+                                        <h6>$ {(this.state.etherPool['price'])}</h6>
                                     </td>
                                     <td>
                                         <h6>{(this.state.etherPool['totalAmount'] / 10 ** 18).toLocaleString()}</h6>
@@ -153,9 +157,13 @@ export default class Dashboard extends Component{
                                         <span className="h6 m-1">IuhCoin</span>
                                     </td>
                                     <td>
+                                        <h6>$ {(this.state.iuhCoinPool  ['price'])}</h6>
+                                    </td>
+                                    <td>
                                         <h6>{(this.state.iuhCoinPool['totalAmount'] / 10 ** 18).toLocaleString()}</h6>
                                         <p>$ {this.state.iuhCoinTotal}</p>
                                     </td>
+                                    
                                     <td> 
                                         <h6>{this.state.iuhCoinPool['lendRate'] / 100}%</h6>
                                     </td>

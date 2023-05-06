@@ -61,7 +61,7 @@ export default class RepayIuhCoin extends Component{
         this.setState({activeTab: key});
     };
     handleNextTab = () => {
-            this.setState({activeTab: this.state.activeTab  % 2 +1});
+            this.setState({activeTab: this.state.activeTab  % 3 +1});
     };
     async repayAmount(amount){
         this.setState({amount: amount, connect: true});
